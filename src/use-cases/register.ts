@@ -16,7 +16,7 @@ export class RegisterUseCase {
     email,
     password,
   }: RegisterUseCaseRequest) {
-    const password_hash = await hasdh(password, 6)
+    const password_hash = await hash(password, 6)
 
     const userWithSameEmail = await this.usersRepository.findByEmail(email)
 
