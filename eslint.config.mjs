@@ -5,6 +5,7 @@ export default [
   {
     rules: {
       camelcase: 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
     },
   },
 ]
