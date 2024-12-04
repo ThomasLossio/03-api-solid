@@ -1,9 +1,7 @@
 import { expect, describe, it, beforeEach } from 'vitest'
 import { InMemoryUserRepository } from
   '@/repositories/in-memory/in-memory-users-repository'
-import { AuthenticateUseCase } from './authenticate'
 import { hash } from 'bcryptjs'
-import { InvalidCredentialsError } from './errors/invalid-credentials-error'
 import { GetProfileUseCase } from './get-user-profile'
 import { ResourceNotFoundError } from './errors/resource-not-found-error'
 
