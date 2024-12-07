@@ -6,7 +6,7 @@ import { CreateGymUseCase } from './create-gym'
 let gymsRepository: InMemoryGymRepository
 let sut: CreateGymUseCase
 
-describe('Register Use Case', () => {
+describe('Create Gym Use Case', () => {
   beforeEach(() => {
     gymsRepository = new InMemoryGymRepository()
     sut = new CreateGymUseCase(gymsRepository)
