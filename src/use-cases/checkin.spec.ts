@@ -17,14 +17,14 @@ describe('Check In Use Case', () => {
     checkInsRepository = new InMemoryCheckInRepository()
     gymsRepository = new InMemoryGymRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
-
+    
     await gymsRepository.create({
       id: 'gym-01',
       title: 'JavaScript Gym',
       description: '',
       phone: '',
-      latitude: 0,
-      longitude: 0,
+      latitude: -7.2292586,
+      longitude: -39.3193431,
     })
 
     vi.useFakeTimers()
@@ -38,8 +38,8 @@ describe('Check In Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -51,15 +51,15 @@ describe('Check In Use Case', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })
 
     await expect(() => sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })).rejects.toBeInstanceOf(MaxNumberOfCheckInsError)
   })
 
@@ -69,8 +69,8 @@ describe('Check In Use Case', () => {
     await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })
 
     vi.setSystemTime(new Date(2022, 0, 21, 8, 0, 0))
@@ -78,8 +78,8 @@ describe('Check In Use Case', () => {
     const { checkIn } = await sut.execute({
       gymId: 'gym-01',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })
 
     expect(checkIn.id).toEqual(expect.any(String))
@@ -91,15 +91,15 @@ describe('Check In Use Case', () => {
       title: 'JavaScript Gym',
       description: '',
       phone: '',
-      latitude: 52.0543210,
-      longitude: 55.1234567,
+      latitude: -7.2268745,
+      longitude: -39.3193431,
     })
 
     await expect(() => sut.execute({
       gymId: 'gym-02',
       userId: 'user-01',
-      userLatitude: 0,
-      userLongitude: 0,
+      userLatitude: -7.2292586,
+      userLongitude: -39.3193431,
     })).rejects.toBeInstanceOf(MaxDistanceError)
   })
 })
