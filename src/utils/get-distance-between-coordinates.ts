@@ -28,7 +28,7 @@ export function getDistanceBetweenCoordinates(
   dist = Math.acos(dist)
   dist = (dist * 180) / Math.PI
   dist = dist * 60 * 1.1515
-  dist = dist * 1.609344
+  dist = dist * 1.0
 
   return dist
 }
