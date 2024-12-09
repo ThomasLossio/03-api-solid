@@ -19,7 +19,7 @@ describe('Search Gyms Use Case', () => {
       latitude: -7.2292586,
       longitude: -39.3193431,
     })
-    
+
     await gymsRepository.create({
       title: 'TypeScript Gym',
       description: null,
@@ -30,12 +30,12 @@ describe('Search Gyms Use Case', () => {
 
     const { gyms } = await sut.execute({
       query: 'JavaScript',
-      page: 1
+      page: 1,
     })
 
     expect(gyms).toHaveLength(1)
     expect(gyms).toEqual([
-      expect.objectContaining({ title: 'JavaScript Gym' })
+      expect.objectContaining({ title: 'JavaScript Gym' }),
     ])
   })
 
@@ -52,13 +52,13 @@ describe('Search Gyms Use Case', () => {
 
     const { gyms } = await sut.execute({
       query: 'JavaScript',
-      page: 2
+      page: 2,
     })
 
     expect(gyms).toHaveLength(2)
     expect(gyms).toEqual([
       expect.objectContaining({ title: 'JavaScript Gym 21' }),
-      expect.objectContaining({ title: 'JavaScript Gym 22' })
+      expect.objectContaining({ title: 'JavaScript Gym 22' }),
     ])
   })
 })

@@ -9,7 +9,7 @@ export class InMemoryGymRepository implements GymsRepository {
   async searchMany(query: string, page: number) {
     return this.items
       .filter((item) => item.title.includes(query))
-      .slice((page - 1) * 20, page * 20) 
+      .slice((page - 1) * 20, page * 20)
   }
 
   async findById(id: string) {
@@ -25,8 +25,8 @@ export class InMemoryGymRepository implements GymsRepository {
   async findManyNearby(params: FindManyNearbyParams) {
     return this.items.filter(item => {
       const distance = getDistanceBetweenCoordinates(
-        { latitude: params.latitude, longitude: params.longitude},
-        {latitude: item.latitude.toNumber(), longitude: item.longitude.toNumber()}
+        { latitude: params.latitude, longitude: params.longitude },
+        { latitude: item.latitude.toNumber(), longitude: item.longitude.toNumber() },
       )
 
       return distance < 10

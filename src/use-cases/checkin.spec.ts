@@ -17,7 +17,7 @@ describe('Check In Use Case', () => {
     checkInsRepository = new InMemoryCheckInRepository()
     gymsRepository = new InMemoryGymRepository()
     sut = new CheckInUseCase(checkInsRepository, gymsRepository)
-    
+
     await gymsRepository.create({
       id: 'gym-01',
       title: 'JavaScript Gym',

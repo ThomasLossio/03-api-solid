@@ -1,7 +1,7 @@
-import { Prisma, CheckIn } from "@prisma/client";
-import { CheckInsRepository } from "../check-ins-repository";
-import { prisma } from "@/lib/prisma";
-import dayjs from "dayjs";
+import { Prisma, CheckIn } from '@prisma/client'
+import { CheckInsRepository } from '../check-ins-repository'
+import { prisma } from '@/lib/prisma'
+import dayjs from 'dayjs'
 
 export class PrismaCheckInsRepository implements CheckInsRepository {
   async create(data: Prisma.CheckInUncheckedCreateInput) {
@@ -15,9 +15,9 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async save(data: CheckIn) {
     const checkIn = await prisma.checkIn.update({
       where: {
-        id: data.id
+        id: data.id,
       },
-      data
+      data,
     })
 
     return checkIn
@@ -26,8 +26,8 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async findById(id: string) {
     const checkIn = await prisma.checkIn.findUnique({
       where: {
-        id
-      }
+        id,
+      },
     })
 
     return checkIn
@@ -42,9 +42,9 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
         user_id: userId,
         created_at: {
           gte: startOfTheDay.toDate(),
-          lte: endOfTheDay.toDate()
-        }
-      }
+          lte: endOfTheDay.toDate(),
+        },
+      },
     })
 
     return checkIn
@@ -53,10 +53,10 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async findManyByUserId(userId: string, page: number) {
     const checkIns = await prisma.checkIn.findMany({
       where: {
-        user_id: userId
+        user_id: userId,
       },
       take: 20,
-      skip: (page - 1) * 20
+      skip: (page - 1) * 20,
     })
 
     return checkIns
@@ -65,8 +65,8 @@ export class PrismaCheckInsRepository implements CheckInsRepository {
   async countByUserId(userId: string) {
     const count = await prisma.checkIn.count({
       where: {
-        user_id: userId
-      }
+        user_id: userId,
+      },
     })
 
     return count
